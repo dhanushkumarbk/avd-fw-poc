@@ -56,7 +56,20 @@ To allow GitHub Actions to deploy to Azure, you need to create a service princip
     az ad sp create-for-rbac --name "<your-sp-name>" --role "Contributor" --scopes "/subscriptions/<your-subscription-id>" --sdk-auth
     ```
 
-2.  **Add the Secret to GitHub**:
+    The output will be a JSON object. Ensure it contains `clientId`, `clientSecret`, `subscriptionId`, and `tenantId`.
+
+    **Example JSON:**
+    ```json
+    {
+      "clientId": "<GUID>",
+      "clientSecret": "<GUID>",
+      "subscriptionId": "<GUID>",
+      "tenantId": "<GUID>",
+      ...
+    }
+    ```
+
+2.  **Add the Secret to GitHub**: 
 
     - Go to your GitHub repository's **Settings** > **Secrets and variables** > **Actions**.
     - Click **New repository secret**.
