@@ -6,7 +6,7 @@ resource "azurerm_public_ip" "fw_pip" {
   sku                 = "Standard"
 }
 
-resource "azurerm_azure_firewall" "fw" {
+resource "azurerm_firewall" "fw" {
   name                = "${var.prefix}-fw"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -22,7 +22,7 @@ resource "azurerm_azure_firewall" "fw" {
 
 resource "azurerm_firewall_network_rule_collection" "allow_all" {
   name                = "allow-all-outbound"
-  azure_firewall_name = azurerm_azure_firewall.fw.name
+  azure_firewall_name = azurerm_firewall.fw.name
   resource_group_name = var.resource_group_name
   priority            = 100
   action              = "Allow"
