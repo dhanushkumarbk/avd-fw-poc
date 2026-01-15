@@ -2,7 +2,7 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
   name                     = "${var.prefix}-hp"
   location                 = var.location
   resource_group_name      = var.resource_group_name
-  host_pool_type           = "Pooled"
+  type                     = "Pooled"
   load_balancer_type       = "BreadthFirst"
 }
 
