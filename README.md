@@ -81,3 +81,5 @@ To allow GitHub Actions to deploy to Azure, you need to create a service princip
 1.  Clone this repository.
 2.  Set up the `AZURE_CREDENTIALS` secret as described above.
 3.  Push a change to the `main` branch to trigger the deployment.
+
+<!-- Trigger workflow -->
