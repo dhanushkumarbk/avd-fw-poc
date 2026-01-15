@@ -46,6 +46,16 @@ The pipeline consists of two main jobs:
 
 This two-step process with manual approval serves as a digital CAB review, ensuring that changes are reviewed and verified before being deployed.
 
+### Enabling Manual Approval (CAB Gate)
+
+To enforce the manual approval step, you must configure a protection rule for the `production` environment in your GitHub repository. Without this rule, the workflow will run automatically.
+
+1.  Go to your repository's **Settings** > **Environments**.
+2.  Click **New environment**.
+3.  Name the environment `production` and click **Configure environment**.
+4.  Under **Deployment protection rules**, check the box for **Required reviewers**.
+5.  Add yourself or your team as a reviewer and click **Save protection rules**.
+
 ### Setup Azure Credentials
 
 To allow GitHub Actions to deploy to Azure, you need to create a service principal and add its credentials as a secret in your GitHub repository.
