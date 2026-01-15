@@ -10,6 +10,8 @@ jobs:
   plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
+    env:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
     defaults:
       run:
         working-directory: ./terraform/environments/dev
