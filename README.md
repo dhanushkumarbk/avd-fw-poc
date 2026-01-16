@@ -56,6 +56,35 @@ To enforce the manual approval step, you must configure a protection rule for th
 4.  Under **Deployment protection rules**, check the box for **Required reviewers**.
 5.  Add yourself or your team as a reviewer and click **Save protection rules**.
 
+### One-Time Backend Setup
+
+This project uses a remote backend to store the Terraform state file in an Azure Storage Account. This is a best practice that ensures the state is managed centrally and securely. You need to create this storage account once before you can run the main CI/CD workflow.
+
+1.  **Navigate to the backend directory**:
+    ```bash
+    cd terraform/backend
+    ```
+
+2.  **Log in to Azure**: 
+    ```bash
+    az login
+    ```
+
+3.  **Initialize and Apply Terraform**:
+    ```bash
+    terraform init
+    terraform apply -auto-approve
+    ```
+
+4.  **Get the Storage Account Name**: 
+    The output of the `apply` command will be the name of the storage account created for the backend. Copy this value.
+
+5.  **Create a New GitHub Secret**:
+    - Go to your repository's **Settings** > **Secrets and variables** > **Actions**.
+    - Click **New repository secret**.
+    - Name the secret `TF_STATE_STORAGE_ACCOUNT`.
+    - Paste the storage account name you copied as the value.
+
 ### Setup Azure Credentials
 
 To allow GitHub Actions to deploy to Azure, you need to create a service principal and add its credentials as a secret in your GitHub repository.

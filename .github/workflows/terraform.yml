@@ -27,7 +27,12 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: 'Terraform Init'
-        run: terraform init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=tfstate-rg" \
+            -backend-config="storage_account_name=${{ secrets.TF_STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=tfstate" \
+            -backend-config="key=dev.tfstate"
 
       - name: 'Terraform Validate'
         run: terraform validate
@@ -74,7 +79,12 @@ jobs:
           path: ./terraform/environments/dev
 
       - name: 'Terraform Init'
-        run: terraform init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=tfstate-rg" \
+            -backend-config="storage_account_name=${{ secrets.TF_STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=tfstate" \
+            -backend-config="key=dev.tfstate"
 
       - name: 'Terraform Apply'
         run: terraform apply -auto-approve tfplan
